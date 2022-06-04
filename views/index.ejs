@@ -4,8 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Chat App</title>
-  <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
+  <title>C4EI Chat</title>
+  <!-- <script defer src="http://localhost:3001/socket.io/socket.io.js"></script> -->
+  <script defer src="https://talk.c4ei.net/socket.io/socket.io.js"></script>
   <script defer src="script.js"></script>
 </head>
 <body>
@@ -15,9 +16,18 @@
       <a href="/<%= room %>">Join</a>
     <% }) %>
   </div>
-  <form action="/room" method="POST">
-    <input name="room" type="text" required>
+  <form action="/room" id="f_makeRoom" method="POST">
+    <input name="room" type="text" value="c4ei" required >
     <button type="submit">New Room</button>
   </form>
+  <% if (Object.keys(rooms).length==0){ %>
+  <script>
+      document.getElementById("f_makeRoom").submit();
+  </script>
+  <% } else { %>
+    <script>
+        document.location.href="/c4ei";
+    </script>
+  <% } %>
 </body>
 </html>

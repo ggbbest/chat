@@ -9,8 +9,10 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 
 const rooms = { }
+// let userNumb=1;
 
 app.get('/', (req, res) => {
+  // rooms[0]="c4ei";
   res.render('index', { rooms: rooms })
 })
 
@@ -31,11 +33,12 @@ app.get('/:room', (req, res) => {
   res.render('room', { roomName: req.params.room })
 })
 
-server.listen(3000)
+server.listen(3001)
 
 io.on('connection', socket => {
   socket.on('new-user', (room, name) => {
     socket.join(room)
+    // name = "G_"+userNumb;
     rooms[room].users[socket.id] = name
     socket.to(room).broadcast.emit('user-connected', name)
   })

@@ -1,13 +1,16 @@
-const socket = io('http://localhost:3000')
+// const socket = io('http://localhost:3001')
+const socket = io('https://talk.c4ei.net')
 const messageContainer = document.getElementById('message-container')
 const roomContainer = document.getElementById('room-container')
 const messageForm = document.getElementById('send-container')
 const messageInput = document.getElementById('message-input')
 
 if (messageForm != null) {
-  const name = prompt('What is your name?')
-  appendMessage('You joined')
+  // const name = prompt('What is your name?');
+  let _letter = jsfnLetter();
+  const name = _letter + "" + Math.floor(Math.random() * 1000000);
   socket.emit('new-user', roomName, name)
+  appendMessage('You joined')
 
   messageForm.addEventListener('submit', e => {
     e.preventDefault()
@@ -44,4 +47,10 @@ function appendMessage(message) {
   const messageElement = document.createElement('div')
   messageElement.innerText = message
   messageContainer.append(messageElement)
+}
+
+function jsfnLetter() {
+	const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+  let _letter = alphabet[Math.floor(Math.random() * alphabet.length)]
+	return _letter;
 }
