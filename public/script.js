@@ -47,6 +47,8 @@ function appendMessage(message) {
   const messageElement = document.createElement('div')
   messageElement.innerText = message
   messageContainer.append(messageElement)
+  // messageContainer.scrollTop = messageContainer.scrollHeight;
+  window.scrollTo(0,document.body.scrollHeight);
 }
 
 function jsfnLetter() {
@@ -54,3 +56,7 @@ function jsfnLetter() {
   let _letter = alphabet[Math.floor(Math.random() * alphabet.length)]
 	return _letter;
 }
+
+// function jsfn_scrollBtm() {
+//   messageContainer.scrollTop(messageContainer[0].scrollHeight);
+// }
